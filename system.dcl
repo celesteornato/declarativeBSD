@@ -12,7 +12,6 @@ i3
 i3status
 jackit
 kitty
-wezterm
 libva-intel-media-driver
 linux-discord
 linux-rl9-ffmpeg-libs

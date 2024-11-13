@@ -9,24 +9,24 @@ mkdir -p $DIFFDIR
 # Setup current system and diffs with desired system
 pkg prime-list > "$CURRENTDIR/current-system"
 
-DIFFS=$(diff /home/main/Declarative/system.dcl "$CURRENTDIR/current-system")
+DIFF_COMMAND="diff --ignore-all-space --ignore-blank-lines /home/main/declarativebsd/system.dcl '$CURRENTDIR/current-system'"
+DIFF_ADD=$(echo $DIFF_COMMAND | sh | grep "<" | awk '{print $2}')
+DIFF_RM=$(echo $DIFF_COMMAND | sh | grep ">" | awk '{print $2}')
+
 
 # Ugly printfs to get funny colors
-printf "\033[32mAdding: \n  $(echo $DIFFS | grep "<" | awk '{print $3}')\n\n"
-printf "\033[31mRemoving: \n  $(echo $DIFFS | grep ">" | awk '{print $3}') \033[97m"
+printf "\033[32mAdding:\n  $(echo $DIFF_ADD)\n\n"
+printf "\033[31mRemoving:\n  $(echo $DIFF_RM)\033[97m"
 
 echo
 read -r -p "Are you sure? (Y/n) : " REPLY
 echo
 if [ "$REPLY" != 'n' ];
 then
-  (echo $DIFFS | grep ">" | awk '{print $3}') > "$DIFFDIR/diffRemove"
-  (echo $DIFFS | grep "<" | awk '{print $3}') > "$DIFFDIR/diffAdd"
-
   # Add the new system, then remove the old one
-  cat "$DIFFDIR/diffAdd" | xargs pkg install -y
-  cat "$DIFFDIR/diffRemove" | xargs pkg remove -y
-  mv "$CURRENTDIR/current-system" "$CURRENTDIR/old-system-$(ls -1 $CURRENTDIR | wc -l | awk '{print $1}')"
+  echo $DIFF_ADD | xargs pkg install -y
+  echo $DIFf_RM | xargs pkg remove -y
+  mv "$CURRENTDIR/current-system" "$CURRENTDIR/old-system-$(ls -1 $CURRENTDIR | wc -l | awk '{print $2}')"
   pkg prime-list > "$CURRENTDIR/current-system"
   pkg autoremove -y
 fi
