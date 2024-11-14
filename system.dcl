@@ -12,12 +12,11 @@ alsa-lib
 libva-intel-media-driver
 vulkan-tools
 xf86-video-intel
+iwmbt-firmware
 
 # Cool utils
-
 en-freebsd-doc
 fastfetch
-wifimgr
 
 # Probs required utils
 pavucontrol 
@@ -37,12 +36,16 @@ zsh
 
 
 # rice
-xinit 
-xorg
 nerd-fonts
-i3
-i3status
+xorg-fonts
+zh-CJKUnifonts
+hyprland
+xdg-desktop-portal-hyprland
 kitty
+hyprpaper
+waybar
+xwayland
+hyprlock
 rofi
 
 # dev
