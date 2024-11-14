@@ -1,36 +1,49 @@
-mesa-libs
+pkg
+
+# Hardware type shit
+mesa-libs 
 mesa-dri
-btop
 cpu-microcode-intel
-dmenu
 drm-kmod
-fastfetch
-firefox
-git
 gpu-firmware-intel-kmod-kabylake
+jackit
+pulseaudio
+alsa-lib
+libva-intel-media-driver
+vulkan-tools
+xf86-video-intel
+
+# Cool utils
+
+en-freebsd-doc
+fastfetch
+wifimgr
+
+# Probs required utils
+pavucontrol 
+git
 helix
+firefox
+flameshot
+linux-discord
+sudo
+
+# cli
+lsblk 
+btop
+lynx
+tmux
+zsh
+
+
+# rice
+xinit 
+xorg
+nerd-fonts
 i3
 i3status
-jackit
 kitty
-libva-intel-media-driver
-lsblk
-lynx
-pkg
-pulseaudio
 rofi
-rust
-sudo
-tmux
-vulkan-tools
-waybar
-xf86-video-intel
-xinit
-xorg
-zsh
-dissent
-nerd-fonts
-wifimgr
-pavucontrol
-en-freebsd-doc
-alsa-lib
+
+# dev
+rust 
