@@ -7,8 +7,9 @@ cpu-microcode-intel
 drm-kmod
 gpu-firmware-intel-kmod-kabylake
 jackit
-pulseaudio
+wireplumber
 alsa-lib
+pulseaudio
 libva-intel-media-driver
 vulkan-tools
 xf86-video-intel
@@ -33,12 +34,14 @@ btop
 lynx
 tmux
 zsh
+bash
 
-
-# rice
+# fonts
 nerd-fonts
 xorg-fonts
 zh-CJKUnifonts
+
+# rice
 hyprland
 xdg-desktop-portal-hyprland
 kitty
@@ -47,6 +50,8 @@ waybar
 xwayland
 hyprlock
 rofi
+cliphist
+thunar
 
 # dev
 rust 
