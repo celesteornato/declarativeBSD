@@ -7,9 +7,9 @@ sudo mkdir -p $CURRENTDIR
 sudo mkdir -p $DIFFDIR
 
 # Setup current system and diffs with desired system
-OLDFILE="$CURRENTDIR/old-system-$(ls -1 $CURRENTDIR | wc -l | awk '{print $2}')"
-sudo pkg prime-list > OLDFILE
-sort /home/main/declarativebsd/system.dcl > "$CURRENTDIR/current-system"
+OLDFILE="$CURRENTDIR/old-system-$(ls -1 $CURRENTDIR | wc -l | awk '{print $1}')"
+sudo pkg prime-list > "$OLDFILE"
+sudo sort /home/main/declarativebsd/system.dcl > "$CURRENTDIR/current-system"
 
 DIFF_COMMAND="diff --ignore-all-space --ignore-blank-lines '$CURRENTDIR/current-system' $OLDFILE"
 DIFF_ADD=$(echo $DIFF_COMMAND | sh | grep "<" | awk '{print $2}')
@@ -26,8 +26,9 @@ echo
 if [ "$REPLY" != 'n' ];
 then
   # Add the new system, then remove the old one
+
   echo $DIFF_ADD | sudo xargs pkg install -y
-  echo $DIFf_RM | sudo xargs pkg remove -y
-  sudo mv "$CURRENTDIR/current-system" "$CURRENTDIR/old-system-$(ls -1 $CURRENTDIR | wc -l | awk '{print $2}')"
+
+  echo $DIFF_RM | sudo xargs pkg remove -y
   sudo pkg autoremove -y
 fi

@@ -14,8 +14,6 @@ i3status
 jackit
 kitty
 libva-intel-media-driver
-linux-discord
-linux-rl9-ffmpeg-libs
 lsblk
 lynx
 pkg
