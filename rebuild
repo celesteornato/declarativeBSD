@@ -3,8 +3,8 @@
 DIFFDIR="/tmp"
 CURRENTDIR="/var/tmp/oldsystems"
 
-mkdir -p $CURRENTDIR
-mkdir -p $DIFFDIR
+sudo mkdir -p $CURRENTDIR
+sudo mkdir -p $DIFFDIR
 
 # Setup current system and diffs with desired system
 pkg prime-list > "$CURRENTDIR/current-system"
@@ -13,20 +13,20 @@ DIFF_COMMAND="diff --ignore-all-space --ignore-blank-lines /home/main/declarativ
 DIFF_ADD=$(echo $DIFF_COMMAND | sh | grep "<" | awk '{print $2}')
 DIFF_RM=$(echo $DIFF_COMMAND | sh | grep ">" | awk '{print $2}')
 
+LONG_ASS_LINE="---------------------------------------"
 
 # Ugly printfs to get funny colors
-printf "\033[32mAdding:\n  $(echo $DIFF_ADD)\n\n"
-printf "\033[31mRemoving:\n  $(echo $DIFF_RM)\033[97m"
+printf "\033[32m $LONG_ASS_LINE-Adding-:$LONG_ASS_LINE\n  $(echo $DIFF_ADD)\n\n"
+printf "\033[31m $LONG_ASS_LINE-Removing-:$LONG_ASS_LINE\n  $(echo $DIFF_RM)\033[97m\n"
 
-echo
 read -r -p "Are you sure? (Y/n) : " REPLY
 echo
 if [ "$REPLY" != 'n' ];
 then
   # Add the new system, then remove the old one
-  echo $DIFF_ADD | xargs pkg install -y
-  echo $DIFf_RM | xargs pkg remove -y
-  mv "$CURRENTDIR/current-system" "$CURRENTDIR/old-system-$(ls -1 $CURRENTDIR | wc -l | awk '{print $2}')"
-  pkg prime-list > "$CURRENTDIR/current-system"
-  pkg autoremove -y
+  echo $DIFF_ADD | sudo xargs pkg install -y
+  echo $DIFf_RM | sudo xargs pkg remove -y
+  sudo mv "$CURRENTDIR/current-system" "$CURRENTDIR/old-system-$(ls -1 $CURRENTDIR | wc -l | awk '{print $2}')"
+  sudo pkg prime-list > "$CURRENTDIR/current-system"
+  sudo pkg autoremove -y
 fi

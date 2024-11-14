@@ -1,4 +1,6 @@
 alsa-lib
+mesa-libs
+mesa-dri
 btop
 cpu-microcode-intel
 dmenu
@@ -29,3 +31,5 @@ xf86-video-intel
 xinit
 xorg
 zsh
+dissent
+nerd-fonts
