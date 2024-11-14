@@ -7,17 +7,19 @@ sudo mkdir -p $CURRENTDIR
 sudo mkdir -p $DIFFDIR
 
 # Setup current system and diffs with desired system
-pkg prime-list > "$CURRENTDIR/current-system"
+OLDFILE="$CURRENTDIR/old-system-$(ls -1 $CURRENTDIR | wc -l | awk '{print $2}')"
+sudo pkg prime-list > OLDFILE
+sort /home/main/declarativebsd/system.dcl > "$CURRENTDIR/current-system"
 
-DIFF_COMMAND="diff --ignore-all-space --ignore-blank-lines /home/main/declarativebsd/system.dcl '$CURRENTDIR/current-system'"
+DIFF_COMMAND="diff --ignore-all-space --ignore-blank-lines '$CURRENTDIR/current-system' $OLDFILE"
 DIFF_ADD=$(echo $DIFF_COMMAND | sh | grep "<" | awk '{print $2}')
 DIFF_RM=$(echo $DIFF_COMMAND | sh | grep ">" | awk '{print $2}')
 
-LONG_ASS_LINE="---------------------------------------"
+LONG_ASS_LINE="-----------------------------------------------------"
 
 # Ugly printfs to get funny colors
-printf "\033[32m $LONG_ASS_LINE-Adding-:$LONG_ASS_LINE\n  $(echo $DIFF_ADD)\n\n"
-printf "\033[31m $LONG_ASS_LINE-Removing-:$LONG_ASS_LINE\n  $(echo $DIFF_RM)\033[97m\n"
+printf "\033[32m $LONG_ASS_LINE-Adding-$LONG_ASS_LINE\n  $(echo $DIFF_ADD)\n\n"
+printf "\033[31m $LONG_ASS_LINE-Removing-$LONG_ASS_LINE\n  $(echo $DIFF_RM)\033[97m\n"
 
 read -r -p "Are you sure? (Y/n) : " REPLY
 echo
@@ -27,6 +29,5 @@ then
   echo $DIFF_ADD | sudo xargs pkg install -y
   echo $DIFf_RM | sudo xargs pkg remove -y
   sudo mv "$CURRENTDIR/current-system" "$CURRENTDIR/old-system-$(ls -1 $CURRENTDIR | wc -l | awk '{print $2}')"
-  sudo pkg prime-list > "$CURRENTDIR/current-system"
   sudo pkg autoremove -y
 fi

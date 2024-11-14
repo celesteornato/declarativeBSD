@@ -1,4 +1,3 @@
-alsa-lib
 mesa-libs
 mesa-dri
 btop
@@ -33,3 +32,7 @@ xorg
 zsh
 dissent
 nerd-fonts
+wifimgr
+pavucontrol
+en-freebsd-doc
+alsa-lib
