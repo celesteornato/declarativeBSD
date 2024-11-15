@@ -9,7 +9,6 @@ gpu-firmware-intel-kmod-kabylake
 jackit
 wireplumber
 alsa-lib
-pulseaudio
 libva-intel-media-driver
 vulkan-tools
 xf86-video-intel
@@ -18,6 +17,8 @@ iwmbt-firmware
 # Cool utils
 en-freebsd-doc
 fastfetch
+feh
+mpv
 
 # Probs required utils
 pavucontrol 
@@ -35,17 +36,22 @@ lynx
 tmux
 zsh
 bash
+shuf
+ytfzf
 
 # fonts
 nerd-fonts
 xorg-fonts
 zh-CJKUnifonts
+code2000
+alef-webfont
+webfonts
 
 # rice
 hyprland
 xdg-desktop-portal-hyprland
 kitty
-hyprpaper
+swaybg
 waybar
 xwayland
 hyprlock
