@@ -28,13 +28,13 @@ wpa_supplicant_gui
 grimshot
 mixertui
 dsbmixer
+linux-discord
 
 # Probs required utils
 pavucontrol 
 git
 helix
 firefox
-linux-discord
 sudo
 
 # cli
@@ -69,3 +69,5 @@ thunar
 # dev
 rust 
 cmake
+rust-analyzer
+glx-utils
