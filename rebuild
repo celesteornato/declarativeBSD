@@ -17,14 +17,18 @@ DIFF_RM=$(echo $DIFF_COMMAND | sh | grep -v "#" | grep ">" |  awk '{print $2}')
 LONG_ASS_LINE="-----------------------------------------------------"
 
 # Ugly printfs to get funny colors
+
+if [ "$DIFF_ADD" == '' -a "$DIFF_RM" == '' ]; then
+  printf "No changes to be made, exiting..."
+  exit 0
+fi
+
 if [ "$DIFF_ADD" != '' ]; then
 printf "\033[32m $LONG_ASS_LINE-Adding-$LONG_ASS_LINE\n  $(echo $DIFF_ADD)\033[97m\n\n"
 fi
-
 if [ "$DIFF_RM" != '' ]; then
 printf "\033[31m $LONG_ASS_LINE-Removing-$LONG_ASS_LINE\n  $(echo $DIFF_RM)\033[97m\n\n"
 fi
-
 
 read -r -p "Are you sure? (Y/n) : " REPLY
 echo
