@@ -26,6 +26,8 @@ feh
 mpv
 wpa_supplicant_gui
 grimshot
+mixertui
+dsbmixer
 
 # Probs required utils
 pavucontrol 
