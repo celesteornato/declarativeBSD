@@ -16,6 +16,8 @@ iwmbt-firmware
 
 # Gaming, on MY FreeBDS ? More likely than you think
 prismlauncher
+qt5
+qt6
 
 # Cool utils
 en-freebsd-doc
@@ -23,13 +25,13 @@ fastfetch
 feh
 mpv
 wpa_supplicant_gui
+grimshot
 
 # Probs required utils
 pavucontrol 
 git
 helix
 firefox
-flameshot
 linux-discord
 sudo
 
@@ -64,3 +66,4 @@ thunar
 
 # dev
 rust 
+cmake
