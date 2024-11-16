@@ -14,11 +14,15 @@ vulkan-tools
 xf86-video-intel
 iwmbt-firmware
 
+# Gaming, on MY FreeBDS ? More likely than you think
+prismlauncher
+
 # Cool utils
 en-freebsd-doc
 fastfetch
 feh
 mpv
+wpa_supplicant_gui
 
 # Probs required utils
 pavucontrol 
@@ -34,7 +38,7 @@ lsblk
 btop
 lynx
 tmux
-zsh
+fish
 bash
 shuf
 ytfzf
@@ -56,7 +60,6 @@ waybar
 xwayland
 hyprlock
 rofi
-cliphist
 thunar
 
 # dev

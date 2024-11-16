@@ -14,14 +14,9 @@ sudo sort /home/main/declarativebsd/system.dcl > "$CURRENTDIR/current-system"
 DIFF_COMMAND="diff --ignore-all-space --ignore-blank-lines '$CURRENTDIR/current-system' $OLDFILE"
 DIFF_ADD=$(echo $DIFF_COMMAND | sh | grep -v "#" | grep "<" |  awk '{print $2}')
 DIFF_RM=$(echo $DIFF_COMMAND | sh | grep -v "#" | grep ">" |  awk '{print $2}')
-DIFF_RC=$(cat /home/main/declarativebsd/settings.dcl | xargs sysrc -e)
 LONG_ASS_LINE="-----------------------------------------------------"
 
 # Ugly printfs to get funny colors
-if [ "$DIFF_RC" != '' ]; then
-printf "\033[93m $LONG_ASS_LINE-Setting-$LONG_ASS_LINE\n$DIFF_RC\033[97m\n"
-fi
-
 if [ "$DIFF_ADD" != '' ]; then
 printf "\033[32m $LONG_ASS_LINE-Adding-$LONG_ASS_LINE\n  $(echo $DIFF_ADD)\033[97m\n\n"
 fi
@@ -36,7 +31,6 @@ echo
 if [ "$REPLY" != 'n' ];
 then
   # Add the new system, then remove the old one
-  echo $(cat /home/main/declarativebsd/settings.dcl) | sudo xargs sysrc
   echo $DIFF_ADD | sudo xargs pkg install -y
   echo $DIFF_RM | sudo xargs pkg remove -y
   sudo pkg autoremove -y
